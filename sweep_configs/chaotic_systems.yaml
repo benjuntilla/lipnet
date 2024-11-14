@@ -1,0 +1,39 @@
+method: grid
+metric:
+  goal: minimize
+  name: val_loss
+name: chaotic-systems-sweep
+parameters:
+  nlayer:
+    value: 4
+  nunit:
+    value: 100
+  architecture:
+    values:
+      - lip
+      - mlp
+  nMB:
+    value: 40
+  dpath:
+    values:
+      - ./data/dysts_DoublePendulum.npz
+      - ./data/dysts_HenonHeiles.npz
+      - ./data/dysts_HyperBao.npz
+      - ./data/dysts_HyperCai.npz
+      - ./data/dysts_HyperJha.npz
+      - ./data/dysts_HyperLorenz.npz
+      - ./data/dysts_HyperLu.npz
+      - ./data/dysts_HyperPang.npz
+      - ./data/dysts_HyperQi.npz
+      - ./data/dysts_HyperRossler.npz
+      - ./data/dysts_HyperWang.npz
+      - ./data/dysts_HyperXu.npz
+      - ./data/dysts_HyperYan.npz
+      - ./data/dysts_HyperYangChen.npz
+      - ./data/dysts_Lorenz96.npz
+      - ./data/dysts_LorenzStenflo.npz
+      - ./data/dysts_NuclearQuadrupole.npz
+      - ./data/dysts_Qi.npz
+      - ./data/dysts_SwingingAtwood.npz
+
+program: train_mlp.py

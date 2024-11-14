@@ -14,10 +14,9 @@
 - while you're in the environment, log into wandb with `wandb login`
 
 ## running it
-- use `sbatch` on your chosen sbatch script, e.g., `sbatch train_lkan.sbatch` or `sbatch sweep_lkan.sbatch`
+- use `sbatch` on your chosen sbatch script, e.g., `sbatch sweep_chaotic_systems.sbatch`
 - ???
 - dance and celebrate!
 
 # acknowledgements
 - https://github.com/elyall/wandb_on_slurm
-- https://github.com/Blealtan/efficient-kan
