@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH -N 38
 #SBATCH -n 38
-#SBATCH -c 2
-#SBATCH -t 0-4
-#SBATCH --mem=16G
+#SBATCH -c 3
+#SBATCH -t 4-0
+#SBATCH --mem=32G
 #SBATCH -p general
 #SBATCH -q public
 #SBATCH -o slurm-logs/sweep-output-%j.log
