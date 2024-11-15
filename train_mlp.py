@@ -438,16 +438,17 @@ for itr in range(args.nepoch):
         plt.tight_layout()
         save_file = os.path.join(fig_save_path, "image_{:03d}.png".format(frame))
         fig = plt.figure(figsize=(12, 4))
-        axes = []
+        fig.suptitle("Validation split", fontsize=16)
         for i in range(num_states):
-            axes.append(fig.add_subplot(1, num_states, i + 1))
-            axes[i].plot(
+            subplot = fig.add_subplot(1, num_states, i + 1)
+            subplot.set_title(f"State {i+1}")
+            subplot.plot(
                 val_time_steps.cpu().numpy(),
                 d[0, :, i].detach().numpy(),
                 lw=2,
                 color="k",
             )
-            axes[i].plot(
+            subplot.plot(
                 val_time_steps.cpu().numpy(),
                 pred_y.detach().numpy()[0, :, i],
                 lw=2,
@@ -461,7 +462,7 @@ for itr in range(args.nepoch):
         frame += 1
 
 # testing on best ckpt based on best validation loss
-ckpt = torch.load(ckpt_path)
+ckpt = torch.load(ckpt_path, weights_only=True)
 odefunc.load_state_dict(ckpt["state_dict"])
 
 odefunc.NFE = 0
@@ -480,11 +481,13 @@ wandb.log({"test_loss": test_loss})  # Log test loss to wandb
 
 # plot best fitted curves
 fig = plt.figure(figsize=(12, 4))
-axes = []
+fig.suptitle("Test split", fontsize=16)
+test_t = t[len(train_time_steps)+len(val_time_steps):]
 for i in range(num_states):
-    axes.append(fig.add_subplot(1, num_states, i + 1))
-    axes[i].plot(t, data["test_data"][0, :, i], lw=3, color="k")
-    axes[i].plot(t, test_sol[0, :, i], lw=2, color="c", ls="--")
+    subplot = fig.add_subplot(1, num_states, i + 1)
+    subplot.set_title(f"State {i+1}")
+    subplot.plot(test_t, data["test_data"][0, :, i], lw=3, color="k")
+    subplot.plot(test_t, test_sol[0, :, i], lw=2, color="c", ls="--")
 
 save_file = os.path.join(fig_save_path, "image_best.png")
 plt.savefig(save_file)
