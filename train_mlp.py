@@ -269,6 +269,8 @@ parser.add_argument(
 parser.add_argument("--lMB", type=int, default=100, help="length of one seq")
 parser.add_argument("--nMB", type=int, default=40, help="number of seqs in each batch")
 
+parser.add_argument("--enable_early_stopping", action=argparse.BooleanOptionalAction)
+
 args = parser.parse_args()
 
 
@@ -426,7 +428,7 @@ for itr in range(args.nepoch):
             epochs_without_improvement += 1  # Increment the counter if no improvement
 
         # Early stopping condition
-        if epochs_without_improvement >= early_stop_patience:
+        if args.enable_early_stopping and epochs_without_improvement >= early_stop_patience:
             print(
                 f"Early stopping at epoch {itr} due to no improvement in validation loss."
             )
