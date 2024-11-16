@@ -327,8 +327,8 @@ wandb_config = {
 if not (args.architecture in ("mlp", "lip")):
     wandb_config["nonlinear_functions"] = args.nonlinear_combo
 
-if args.early_stopping:
-    wandb_config["early_stopping"] = True
+if args.enable_early_stopping:
+    wandb_config["enable_early_stopping"] = True
 
 wandb.init(
     # set the wandb project where this run will be logged
