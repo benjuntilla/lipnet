@@ -1,0 +1,16 @@
+[project]
+name = "lipnet"
+version = "0.1.0"
+description = "lipnet"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "dysts>=0.95",
+    "ipykernel>=6.29.5",
+    "matplotlib>=3.9.2",
+    "numba>=0.60.0",
+    "simplejson>=3.19.3",
+    "torch>=2.5.1",
+    "torchdiffeq>=0.2.4",
+    "wandb>=0.18.7",
+]
