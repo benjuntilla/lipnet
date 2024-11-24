@@ -2,8 +2,8 @@
 #SBATCH -N 19
 #SBATCH -n 19
 #SBATCH -c 1
-#SBATCH -t 4-0
-#SBATCH --mem=32G
+#SBATCH -t 7-0
+#SBATCH --mem=24G
 #SBATCH -p general
 #SBATCH -q public
 #SBATCH -o slurm-logs/sweep-output-%j.log
