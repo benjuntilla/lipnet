@@ -1,6 +1,6 @@
 #!/bin/bash
-#SBATCH -N 38
-#SBATCH -n 38
+#SBATCH -N 19
+#SBATCH -n 19
 #SBATCH -c 1
 #SBATCH -t 4-0
 #SBATCH --mem=32G
