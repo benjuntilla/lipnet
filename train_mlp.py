@@ -422,6 +422,16 @@ for itr in range(args.nepoch):
             torch.save(
                 {
                     "state_dict": odefunc.state_dict(),
+                    "optimizer_state": optimizer.state_dict(),
+                    "scheduler_state": scheduler.state_dict(),
+                    "epoch": itr,
+                    "best_loss": best_loss,
+                    "random_states": {
+                        "torch": torch.get_rng_state(),
+                        "numpy": np.random.get_state(),
+                        "random": random.getstate(),
+                    },
+                    "NFE": odefunc.NFE,
                 },
                 ckpt_path,
             )
