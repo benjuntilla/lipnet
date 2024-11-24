@@ -2,7 +2,7 @@ method: grid
 metric:
   goal: minimize
   name: val_loss
-name: chaotic-systems-sweep
+name: chaotic-systems-sweep-ensemble
 parameters:
   nlayer:
     value: 4
@@ -10,8 +10,7 @@ parameters:
     value: 100
   architecture:
     values:
-      - lip
-      - mlp
+      - mlp_lip
   nMB:
     value: 40
   dpath:

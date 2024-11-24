@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -N 38
 #SBATCH -n 38
-#SBATCH -c 3
+#SBATCH -c 1
 #SBATCH -t 4-0
 #SBATCH --mem=32G
 #SBATCH -p general
@@ -17,4 +17,4 @@ source activate /data/grp_klee263/envs/lipnet
 
 cd /data/grp_klee263/src/lipnet
 
-python sweep-controller.py --sweep_config_path sweep_configs/chaotic_systems.yaml --project_name chaotic-systems
+python sweep-controller.py --sweep_config_path sweep_configs/chaotic_systems_mlp_lip.yaml --project_name chaotic-systems
