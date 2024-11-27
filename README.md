@@ -10,7 +10,7 @@
   - `mamba create -p /data/grp_klee263/envs/lipnet -c pytorch -c nvidia pytorch
     torchvision pytorch-cuda=12.4`
   - `source activate /data/grp_klee263/envs/lipnet`
-  - `mamba install -c conda-forge pytest tqdm wandb torchdiffeq matplotlib`
+  - `mamba install -c conda-forge pytest tqdm wandb torchdiffeq matplotlib simplejson`
 - while you're in the environment, log into wandb with `wandb login`
 
 ## running it
