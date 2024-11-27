@@ -170,7 +170,8 @@ experiments/
 # data for Weights and Biases
 wandb/
 
-# auto-generated config
+# auto-generated stuff
 src/sweep_configs/lkan.yaml
+sweep_rerun.sbatch
 
 .DS_STORE
