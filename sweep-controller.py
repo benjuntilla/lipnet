@@ -12,11 +12,12 @@ os.environ['WANDB_DISABLE_SERVICE'] = "True"
 result = subprocess.run(['scontrol', 'show', 'hostnames'], stdout=subprocess.PIPE)
 node_list = result.stdout.decode('utf-8').split('\n')[:-1]
 
-def run(sweep_config_path, project_name):
+def run(sweep_config_path, project_name, sweep_id=None):
     wandb.init(project=project_name)
-    with open(sweep_config_path) as file:
-        sweep_config = yaml.load(file, Loader=yaml.FullLoader)
-    sweep_id = wandb.sweep(sweep_config, project=project_name)
+    if not sweep_id:
+        with open(sweep_config_path) as file:
+            sweep_config = yaml.load(file, Loader=yaml.FullLoader)
+        sweep_id = wandb.sweep(sweep_config, project=project_name)
     sp = []
     for node in node_list:
         sp.append(subprocess.Popen(['srun',
@@ -34,6 +35,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Run wandb sweep with specified config.')
     parser.add_argument('--sweep_config_path', type=str, default=os.path.join(os.getcwd(), 'src', 'sweep_configs', 'lkan.yaml'), help='Path to the sweep configuration YAML file')
     parser.add_argument('--project_name', type=str, default="lkan", help='wandb project name')
+    parser.add_argument('--sweep_id', type=str, nargs="?", help='id of existing sweep if you want to resume it')
     args = parser.parse_args()
 
-    run(args.sweep_config_path, args.project_name)
+    run(args.sweep_config_path, args.project_name, args.sweep_id)
