@@ -12,7 +12,8 @@ os.environ['WANDB_DISABLE_SERVICE'] = "True"
 result = subprocess.run(['scontrol', 'show', 'hostnames'], stdout=subprocess.PIPE)
 node_list = result.stdout.decode('utf-8').split('\n')[:-1]
 
-def run(sweep_config_path, project_name, sweep_id=None):
+
+def run(sweep_config_path, project_name, entity_name, sweep_id=None):
     wandb.init(project=project_name)
     if not sweep_id:
         with open(sweep_config_path) as file:
@@ -27,7 +28,8 @@ def run(sweep_config_path, project_name, sweep_id=None):
                         node,
                         'sweep-agent.sh',
                         sweep_id,
-                        project_name]))
+                        project_name,
+                        entity_name]))
     exit_codes = [p.wait() for p in sp]  # wait for processes to finish
     return exit_codes
 
@@ -36,6 +38,7 @@ if __name__ == '__main__':
     parser.add_argument('--sweep_config_path', type=str, default=os.path.join(os.getcwd(), 'src', 'sweep_configs', 'lkan.yaml'), help='Path to the sweep configuration YAML file')
     parser.add_argument('--project_name', type=str, default="lkan", help='wandb project name')
     parser.add_argument('--sweep_id', type=str, nargs="?", help='id of existing sweep if you want to resume it')
+    parser.add_argument('--entity_name', type=str, default="benjuntilla-arizona-state-university", help='name of entity')
     args = parser.parse_args()
 
-    run(args.sweep_config_path, args.project_name, args.sweep_id)
+    run(args.sweep_config_path, args.project_name, args.entity_name, args.sweep_id)

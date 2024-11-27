@@ -39,4 +39,4 @@ sbatch_path = "./sweep_rerun.sbatch"
 with open(sbatch_path, "w") as f:
     f.write(template)
 print(f"saved the script to {sbatch_path}")
-print(f"now all you have to do is move the crashed runs in the sweep to a safe place and run {sbatch_path}!")
+print(f"now all you have to do is move the crashed runs in the sweep to a safe place, resume the sweep, make {sbatch_path} executable, and run `sbatch` on it!")
