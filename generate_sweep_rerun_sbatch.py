@@ -1,5 +1,4 @@
 from utils import generate_sweep_sbatch, get_runs_from_sweep
-import simplejson as json
 import argparse
 import math
 
