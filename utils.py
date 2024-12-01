@@ -33,7 +33,7 @@ def compute_pointwise_se(time_series_list):
     
     # compute standard error at each time point
     n_series = len(time_series_list)
-    standard_error = np.std(stacked_series, axis=0) / np.sqrt(n_series)
+    standard_error = np.std(stacked_series, axis=0, ddof=1) / np.sqrt(n_series)
     
     return standard_error
 
