@@ -475,7 +475,7 @@ for itr in range(args.nepoch):
         frame += 1
 
 # testing on best ckpt based on best validation loss
-ckpt = torch.load(ckpt_path, weights_only=True)
+ckpt = torch.load(ckpt_path, weights_only=False)
 odefunc.load_state_dict(ckpt["state_dict"])
 
 odefunc.NFE = 0
